@@ -1,0 +1,85 @@
+$thead-color: #f9f9fb;
+$title-color: #747472;
+$font-family: "Open Sans Condensed", sans-serif;
+
+.content-table {
+    height: auto;
+    overflow: auto;
+
+    table {
+        font-family: $font-family;
+
+        tr {
+            text-align: center;
+        }
+        
+        thead {
+            background-color: $thead-color;
+            opacity: .5;
+
+            th {
+                border: 0;
+                cursor: pointer;
+
+                &:first-child {
+                    text-align: left;
+                }
+                
+                .sort-icon {
+                    display: inline-block;
+                    vertical-align: middle;
+
+                    i {
+                        display: block;
+                        height: 10px;
+                        position: relative;
+                        width: 20px;
+
+                        &.fa-sort-up::before {
+                            bottom: -7px;
+                            cursor: pointer;
+                            left: 0;
+                            position: absolute;
+                            vertical-align: bottom;
+                        }
+
+                        &.fa-sort-down::before {
+                            cursor: pointer;
+                            left: 0;
+                            position: absolute;
+                            top: -9px;
+                            vertical-align: top;
+                        }
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    .image-url {
+                        height: 30px;
+                        width: 30px;
+                        border-radius: 50%;
+                        display: inline-block;
+                        background-color: #62b08c;
+                        text-align: center;
+                        font-weight: bold;
+                        color: white;
+                        padding: .2em;
+                    }
+                }
+                td:first-child {
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    .message-filter {
+        font-family: $font-family;
+        font-size: 1.2em;
+        color: red;
+    }
+}
