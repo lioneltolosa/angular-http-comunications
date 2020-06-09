@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { tap, map, pluck } from 'rxjs/operators';
+import { pluck } from 'rxjs/operators';
+import { User } from 'src/app/models/user';
 
 @Component({
     selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import { tap, map, pluck } from 'rxjs/operators';
 })
 export class DashboardComponent implements OnInit {
 
-    allUsers: [];
+    allUsers: User[];
 
     constructor(private dataService: DataService) { }
 
@@ -26,6 +27,16 @@ export class DashboardComponent implements OnInit {
                 (err) => console.log('Err', err),
                 () => console.log('All done all Users')
             )
+    }
+
+    deleteUser(id: number): void {
+        this.dataService.deleteUser(id)
+            .subscribe((data: void) => {
+                let index = this.allUsers.findIndex(user => user.id === id);
+                this.allUsers.splice(index, 1)
+            }),
+            (err: any) => console.log('Err', err);
+
     }
 
 }
