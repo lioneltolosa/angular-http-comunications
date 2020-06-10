@@ -1,1 +1,50 @@
-<p>users works!</p>
+<div class="col-lg-5">
+    <div class="well bs-component">
+        <form #addUserForm="ngForm" (ngSubmit)="saveUser(addUserForm.value)" class="form-horizontal">
+            <fieldset>
+                <legend>Create User</legend>
+                <div class="form-group">
+                    <label for="firstName" class="col-lg-3 control-label">First Name</label>
+                    <div class="col-lg-8">
+                        <input type="text" 
+                               class="form-control" 
+                               id="firstName" 
+                               placeholder="First Name"
+                               ngModel 
+                               name="firstName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-lg-3 control-label">last_name</label>
+                    <div class="col-lg-8">
+                        <input type="text" 
+                               class="form-control" 
+                               id="lastName" 
+                               placeholder="Last Name"
+                               ngModel 
+                               name="lastName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-lg-3 control-label">Email</label>
+                    <div class="col-lg-8">
+                        <input type="text" 
+                               class="form-control" 
+                               id="email" 
+                               placeholder="Email"
+                               ngModel 
+                               name="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-8 col-lg-offset-3">
+                        <button type="submit" 
+                                class="btn btn-primary">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
