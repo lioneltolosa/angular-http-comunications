@@ -21,6 +21,19 @@ export class DataService {
             )
     }
 
+    getUserById(id: number): Observable<User> {
+        return this.http.get<User>(`${this.url}/api/users/${id}`, {
+            headers: new HttpHeaders({
+                'Accept': 'application/json',
+                'Authorization': 'my-token'
+            })
+        })
+    }
+
+    deleteUser(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.url}/api/users/${id}`)
+    }
+
     private handleError(error: any) {
         console.error('server error:', error);
         if (error.error instanceof Error) {
@@ -28,17 +41,5 @@ export class DataService {
             return Observable.throw(errMessage);
         }
         return Observable.throw(error || 'Node.js server error');
-    }
-
-    /* private handlerHttpError(error: HttpErrorResponse): Observable<UserError> {
-        let dataError = new UserError();
-        dataError.errorNumber = 100;
-        dataError.message = error.statusText;
-        dataError.friendlyMessage = 'An error occurred retrieving data.';
-        return throwError(dataError)
-    } */
-
-    deleteUser(id: number): Observable<void> {
-        return this.http.delete<void>(`${this.url}/api/users${id}`)
     }
 }

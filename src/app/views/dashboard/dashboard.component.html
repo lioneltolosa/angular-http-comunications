@@ -23,10 +23,10 @@
                     <img [src]="user.avatar" class="image-url" alt="...">
                 </td>
                 <td>
-                    <span><a>Edit</a></span>
+                    <a [routerLink]="['/edit', user.id]">Edit</a>
                 </td>
                 <td>
-                    <span (click)="deleteUser(user.id)">Delete</span>
+                    <a (click)="deleteUser(user.id)">Delete</a>
                 </td>
             </tr>
         </tbody>

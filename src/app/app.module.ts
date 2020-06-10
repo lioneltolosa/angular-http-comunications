@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { UsersComponent } from './views/users/users.component';
+import { EditComponent } from './views/edit/edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    UsersComponent
+    UsersComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
