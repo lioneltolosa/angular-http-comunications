@@ -15,13 +15,12 @@ export class EditComponent implements OnInit {
     selectedUser: User;
 
     constructor(private route: ActivatedRoute,
-                private dataService: DataService,
-            ) { }
+        private dataService: DataService,
+    ) { }
 
     ngOnInit(): void {
-        //let id = +this.route.snapshot.params.get('id');
         let id = +this.route.snapshot.params.id
-        
+
         this.dataService.getUserById(id)
             .pipe(
                 pluck('data')
@@ -30,6 +29,14 @@ export class EditComponent implements OnInit {
                 this.selectedUser = user;
                 console.log('User', user);
             })
+    }
+
+    saveChanges(): void {
+        this.dataService.updateUser(this.selectedUser)
+            .subscribe(
+                (data: void) => console.log(`${this.selectedUser.first_name} update successfully`),
+                (err: any) => console.log('Err', err),
+            ) 
     }
 
 }

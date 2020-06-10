@@ -30,6 +30,22 @@ export class DataService {
         })
     }
 
+    createUser(newUser: User): Observable<User> {
+        return this.http.post<User>(`${this.url}/api/users`, newUser, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+            })
+        })
+    }
+
+    updateUser(updateUser: User): Observable<void> {
+        return this.http.put<void>(`${this.url}/api/users`, updateUser, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+            })
+        })
+    }
+
     deleteUser(id: number): Observable<void> {
         return this.http.delete<void>(`${this.url}/api/users/${id}`)
     }
