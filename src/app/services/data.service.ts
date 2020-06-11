@@ -14,11 +14,19 @@ export class DataService {
 
     constructor(private http: HttpClient) { }
 
-    getAllUsers(): Observable<User> {
-        return this.http.get<User>(`${this.url}/api/users`)
+    getAllUsers(): Observable<User[] | UserError> {
+        return this.http.get<User[]>(`${this.url}/api/users`)
             .pipe(
-                catchError(this.handleError)
+                catchError(err => this.handlerHttpError(err))
             )
+    }
+
+    private handlerHttpError(error: HttpErrorResponse): Observable<UserError> {
+        let dataError = new UserError();
+        dataError.errorNumber = 100;
+        dataError.message = error.statusText;
+        dataError.friendlyMessage = 'An error occurred retrieving data.';
+        return throwError(dataError)
     }
 
     getUserById(id: number): Observable<User> {
