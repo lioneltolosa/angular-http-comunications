@@ -10,13 +10,15 @@ import { UsersComponent } from './views/users/users.component';
 import { EditComponent } from './views/edit/edit.component';
 import { AddHeadersInterceptor } from './services/add-headers.interceptor';
 import { CacheInterceptor } from './services/cache.interceptor';
+import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         DashboardComponent,
         UsersComponent,
-        EditComponent
+        EditComponent,
+        PageNotFoundComponent
     ],
     imports: [
         BrowserModule,

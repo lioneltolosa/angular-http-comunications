@@ -4,11 +4,13 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { UsersComponent } from './views/users/users.component';
 import { EditComponent } from './views/edit/edit.component';
 import { UserResolverService } from './services/user-resolver.service';
+import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 
 const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent, resolve: {resolveUsers: UserResolverService} },
     { path: 'users', component: UsersComponent },
     { path: 'edit/:id', component: EditComponent },
+    { path: '**', component: PageNotFoundComponent },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 
