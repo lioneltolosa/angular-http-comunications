@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { ProductData } from './products/data';
 
 // Feature Modules
 import { ProductModule } from './products/product.module';
@@ -27,6 +29,7 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
+        InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
         FormsModule,
         ProductModule
     ],

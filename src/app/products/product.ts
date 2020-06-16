@@ -1,4 +1,4 @@
-export interface Product {
+export interface ProductModel {
     id: number;
     productName: string;
     productCode: string;
@@ -12,7 +12,7 @@ export interface Product {
   }
   
   export interface ProductResolved {
-    product: Product;
+    product: ProductModel;
     error?: any;
   }
   
