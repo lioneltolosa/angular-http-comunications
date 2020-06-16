@@ -2,8 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
+
+// Feature Modules
+import { ProductModule } from './products/product.module';
+
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { UsersComponent } from './views/users/users.component';
@@ -24,7 +27,8 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        ProductModule
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AddHeadersInterceptor, multi: true },

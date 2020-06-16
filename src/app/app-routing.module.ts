@@ -10,8 +10,14 @@ const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent, resolve: {resolveUsers: UserResolverService} },
     { path: 'users', component: UsersComponent },
     { path: 'edit/:id', component: EditComponent },
-    { path: '**', component: PageNotFoundComponent },
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+    {
+        path: 'products',
+        data: { preload: false },
+        loadChildren: () =>
+          import('./products/product.module').then(m => m.ProductModule)
+      },
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
