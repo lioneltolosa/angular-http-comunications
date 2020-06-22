@@ -8,6 +8,7 @@ import { ProductData } from './products/data';
 
 // Feature Modules
 import { ProductModule } from './products/product.module';
+import { UsersModule } from './users/users.module';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
@@ -16,6 +17,7 @@ import { EditComponent } from './views/edit/edit.component';
 import { AddHeadersInterceptor } from './services/add-headers.interceptor';
 import { CacheInterceptor } from './services/cache.interceptor';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
+
 
 @NgModule({
     declarations: [
@@ -31,7 +33,8 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
         HttpClientModule,
         InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
         FormsModule,
-        ProductModule
+        ProductModule,
+        UsersModule
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AddHeadersInterceptor, multi: true },
