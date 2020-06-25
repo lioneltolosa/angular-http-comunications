@@ -30,10 +30,11 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
     imports: [
         BrowserModule,
         HttpClientModule,
-        InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
         FormsModule,
+        InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
         ProductModule,
         UsersModule,
+        
         AppRoutingModule, // El AppRoutingModule va de ultimo, no se porque pero peta si va arriba. Si esta arriba me sale el PageNotFoundComponent
     ],
     providers: [

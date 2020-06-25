@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 
 import { ProductModel } from '../product';
 import { catchError, tap } from 'rxjs/operators';
@@ -22,11 +22,15 @@ export class ProductsService {
     }
 
     getProductsById(id: number): Observable<ProductModel> {
+        if (id === 0) {
+            return of(this.initializeProduct());
+        }
+
         return this.http.get<ProductModel>(`${this.productsUrl}/${id}`)
-        .pipe(
-            /* tap(data => console.log('getProduct: ' + JSON.stringify(data))), */
-            catchError(this.handleError)
-        );
+            .pipe(
+                /* tap(data => console.log('getProduct: ' + JSON.stringify(data))), */
+                catchError(this.handleError)
+            );
     }
 
     private handleError(err) {
@@ -38,5 +42,21 @@ export class ProductsService {
         }
         console.error(err);
         return throwError(errorMessage);
+    }
+
+    private initializeProduct(): ProductModel {
+        // Return an initialized object
+        return {
+            id: 0,
+            productName: null,
+            productCode: null,
+            category: null,
+            tags: [],
+            releaseDate: null,
+            price: null,
+            description: null,
+            starRating: null,
+            imageUrl: null
+        };
     }
 }

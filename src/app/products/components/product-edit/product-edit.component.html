@@ -1,1 +1,55 @@
-<p>product-edit works!</p>
+<div class="col-lg-5">
+    <div class="well bs-component">
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>Edit Product</legend>
+                <div class="form-group">
+                    <label for="productName" class="col-lg-3 control-label">Product Name</label>
+                    <div class="col-lg-8">
+                        <input type="text" 
+                               class="form-control" 
+                               id="productName" 
+                               placeholder="Product Name"
+                               [(ngModel)]=product.productName 
+                               name="productName">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="productCode" class="col-lg-3 control-label">Code Product</label>
+                    <div class="col-lg-8">
+                        <input type="text" 
+                               class="form-control" 
+                               id="productCode" 
+                               placeholder="Last Name"
+                               [(ngModel)]="product.productCode" 
+                               name="productCode">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="description" class="col-lg-3 control-label">Description</label>
+                    <div class="col-lg-8">
+                        <input type="text" 
+                               class="form-control" 
+                               id="description" 
+                               placeholder="Description"
+                               [(ngModel)]="product.description" 
+                               name="description">
+                    </div>
+                </div>
+
+                <!-- <div class="form-group">
+                    <div class="col-lg-8 col-lg-offset-3">
+                        <button type="button" 
+                                class="btn btn-primary" 
+                                (click)="saveChanges()">
+                            Save
+                        </button>
+                    </div>
+                </div> -->
+            </fieldset>
+        </form>
+    </div>
+</div>
