@@ -7,7 +7,7 @@
             <div class="col-md-2">
                 <app-filter (changed)="filter($event)"></app-filter>
             </div>
-            <!--  <div class="col-md-4">
+            <!-- <div class="col-md-4">
                 <input type="text" [(ngModel)]="listFilter" />
             </div> -->
         </div>
@@ -21,10 +21,10 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>
-                          <!-- <button class="btn btn-outline-primary btn-sm"
+                          <button class="btn btn-outline-primary btn-sm"
                                   (click)="toggleImage()">
                             {{showImage ? "Hide" : "Show"}} Image
-                          </button> -->
+                          </button>
                         </th>
                         <th>Product</th>
                         <th>Code</th>
@@ -36,21 +36,22 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let product of filteredProducts">
-                        <!-- <td>
+                        <td>
                           <img *ngIf="showImage && product.imageUrl"
                                 [src]="product.imageUrl"
                                 [title]="product.productName"
                                 [style.width.px]="imageWidth"
                                 [style.margin.px]="imageMargin">
-                        </td> -->
-                        <td>
+                        </td>
+                        <!-- <td>
                             <img [src]="product.imageUrl"
                                  [title]="product.productName"
                                  [style.width.px]="imageWidth"
                                  [style.margin.px]="imageMargin">
-                        </td>
+                        </td> -->
                         <td>
-                            <a [routerLink]="['/products', product.id]">{{ product.productName }}</a>
+                            <a [routerLink]="['/products', product.id]"
+                               [queryParams]="{filterBy: listFilter, showImage: showImage}">{{ product.productName }}</a>
                         </td>
                         <td>{{ product.productCode }}</td>
                         <td>{{ product.releaseDate }}</td>
@@ -69,7 +70,7 @@
                     </tr>
                 </tbody>
             </table>
-            Number of Products: {{ filteredProducts.length }}
+            Number of Products: {{ filteredProducts }}
         </div>
     </div>
 </div>

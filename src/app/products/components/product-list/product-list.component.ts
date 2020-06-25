@@ -12,8 +12,18 @@ export class ProductListComponent implements OnInit {
     products: any;
     imageWidth = 50;
     imageMargin = 2;
+    showImage = false;
 
     filteredProducts: ProductModel[] = [];
+
+    _listFilter = '';
+    get listFilter(): string {
+        return this._listFilter;
+    }
+    set listFilter(value: string) {
+        this._listFilter = value;
+        this.filteredProducts = this.listFilter ? this.filter(this.listFilter) : this.products;
+    }
 
     constructor(private productService: ProductsService) { }
 
@@ -35,5 +45,9 @@ export class ProductListComponent implements OnInit {
         } else {
             this.filteredProducts = this.products;
         }
+    }
+
+    toggleImage(): void {
+        this.showImage = !this.showImage;
     }
 }
