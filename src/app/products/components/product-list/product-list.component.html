@@ -4,7 +4,9 @@
     </div>
     <div class="card-body">
         <div class="row pb-3">
-            <div class="col-md-2">Filter by:</div>
+            <div class="col-md-2">
+                <app-filter (changed)="filter($event)"></app-filter>
+            </div>
             <!--  <div class="col-md-4">
                 <input type="text" [(ngModel)]="listFilter" />
             </div> -->
@@ -33,7 +35,7 @@
                       </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let product of products">
+                    <tr *ngFor="let product of filteredProducts">
                         <!-- <td>
                           <img *ngIf="showImage && product.imageUrl"
                                 [src]="product.imageUrl"
@@ -43,9 +45,9 @@
                         </td> -->
                         <td>
                             <img [src]="product.imageUrl"
-                            [title]="product.productName"
-                                [style.width.px]="imageWidth"
-                                [style.margin.px]="imageMargin">
+                                 [title]="product.productName"
+                                 [style.width.px]="imageWidth"
+                                 [style.margin.px]="imageMargin">
                         </td>
                         <td>
                             <a [routerLink]="['/products', product.id]">{{ product.productName }}</a>
@@ -67,6 +69,7 @@
                     </tr>
                 </tbody>
             </table>
+            Number of Products: {{ filteredProducts.length }}
         </div>
     </div>
 </div>
