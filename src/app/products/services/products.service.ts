@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 
 import { ProductModel } from '../product';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -19,6 +19,14 @@ export class ProductsService {
             .pipe(
                 catchError(this.handleError)
             )
+    }
+
+    getProductsById(id: number): Observable<ProductModel> {
+        return this.http.get<ProductModel>(`${this.productsUrl}/${id}`)
+        .pipe(
+            /* tap(data => console.log('getProduct: ' + JSON.stringify(data))), */
+            catchError(this.handleError)
+        );
     }
 
     private handleError(err) {
