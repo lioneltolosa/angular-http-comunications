@@ -10,7 +10,9 @@ import { ProductEditComponent } from './components/product-edit/product-edit.com
     imports: [
         CommonModule,
         RouterModule.forChild([
-            { path: '', component: ProductListComponent}
+            { path: 'products', component: ProductListComponent},
+            { path: 'products/:id', component: ProductDetailsComponent},
+            { path: 'products/:id/edit', component: ProductEditComponent}
         ])
     ],
     declarations: [

@@ -15,7 +15,7 @@ export class EditComponent implements OnInit {
     selectedUser: User;
 
     constructor(private route: ActivatedRoute,
-        private dataService: DataService,
+                private dataService: DataService,
     ) { }
 
     ngOnInit(): void {
