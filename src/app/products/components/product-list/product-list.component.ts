@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { ProductModel } from '../../product';
+import { ActivatedRoute } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
     selector: 'app-product-list',
@@ -9,12 +11,11 @@ import { ProductModel } from '../../product';
 })
 export class ProductListComponent implements OnInit {
 
-    products: any;
+    pageTitle = 'Product List';
     imageWidth = 50;
     imageMargin = 2;
     showImage = false;
-
-    filteredProducts: ProductModel[] = [];
+    errorMessage = '';
 
     _listFilter = '';
     get listFilter(): string {
@@ -22,20 +23,29 @@ export class ProductListComponent implements OnInit {
     }
     set listFilter(value: string) {
         this._listFilter = value;
-        this.filteredProducts = this.listFilter ? this.filter(this.listFilter) : this.products;
+        this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
     }
 
-    constructor(private productService: ProductsService) { }
+    filteredProducts: ProductModel[] = [];
+    products: ProductModel [] = [];
+
+    constructor(private productService: ProductsService,
+                private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.productService.getProducts()
-            .subscribe(data => {
-                this.products = data;
-                console.log('Products', data)
-            })
+        this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
+        this.showImage = this.route.snapshot.queryParamMap.get('showImage') === 'true';
+
+        this.productService.getProducts().subscribe({
+            next: (products: any) => {
+                this.products = products;
+                this.filteredProducts = this.performFilter(this.listFilter);
+            },
+            error: err => this.errorMessage = err
+        })
     }
 
-    filter(data: string) {
+    /* filter(data: string) {
         if (data) {
             this.filteredProducts = this.products.filter((product: ProductModel) => {
                 return  product.productName.toLowerCase().indexOf(data.toLowerCase()) > -1 ||
@@ -45,6 +55,12 @@ export class ProductListComponent implements OnInit {
         } else {
             this.filteredProducts = this.products;
         }
+    } */
+
+    performFilter(filterBy: string): ProductModel[] {
+        filterBy = filterBy.toLocaleLowerCase();
+        return this.products.filter((product: ProductModel) =>
+          product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
     }
 
     toggleImage(): void {
