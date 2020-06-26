@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
-import { ProductModel } from '../../product';
+import { ProductModel, ProductResolved } from '../../product';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -19,13 +19,18 @@ export class ProductDetailsComponent implements OnInit {
 
     ngOnInit(): void {
         /* let id = +this.route.snapshot.params.id; */
-        const id = +this.route.snapshot.paramMap.get('id'); // el mas es para convertirlo de string a numeric
+        //const id = +this.route.snapshot.paramMap.get('id'); // el mas es para convertirlo de string a numeric
 
-        this.productServive.getProductsById(id)
+        /* this.productServive.getProductsById(id)
         .subscribe({
             next: product => this.onProductRetrieved(product),
             error: err => this.errorMessage = err
-          });
+        }) */;
+
+        const resolvedData: ProductResolved = this.route.snapshot.data['resolveProducts'];
+        console.log('Resolver Products', resolvedData)
+        this.errorMessage = resolvedData.error;
+        this.onProductRetrieved(resolvedData.product);
     }
 
     onProductRetrieved(product: ProductModel): void {

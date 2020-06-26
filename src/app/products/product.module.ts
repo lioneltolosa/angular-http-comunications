@@ -7,6 +7,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 
 import { SharedModule } from '../shared/shared.module';
+import { ProductsResolverService } from './services/products-resolver.service';
 
 @NgModule({
     imports: [
@@ -14,8 +15,8 @@ import { SharedModule } from '../shared/shared.module';
         SharedModule,
         RouterModule.forChild([
             { path: 'products', component: ProductListComponent},
-            { path: 'products/:id', component: ProductDetailsComponent},
-            { path: 'products/:id/edit', component: ProductEditComponent}
+            { path: 'products/:id', component: ProductDetailsComponent, resolve: {resolveProducts: ProductsResolverService}},
+            { path: 'products/:id/edit', component: ProductEditComponent, resolve: {resolveProducts: ProductsResolverService}}
         ])
     ],
     declarations: [
