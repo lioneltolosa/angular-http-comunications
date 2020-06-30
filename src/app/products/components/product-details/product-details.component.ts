@@ -19,7 +19,7 @@ export class ProductDetailsComponent implements OnInit {
 
     ngOnInit(): void {
         /* let id = +this.route.snapshot.params.id; */
-        //const id = +this.route.snapshot.paramMap.get('id'); // el mas es para convertirlo de string a numeric
+        //const id = +this.route.snapshot.paramMap.get('id'); // el + es para convertirlo de string a numeric
 
         /* this.productServive.getProductsById(id)
         .subscribe({

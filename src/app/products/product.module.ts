@@ -5,9 +5,13 @@ import { RouterModule } from '@angular/router';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
+import { ProductEditInfoComponent } from './components/product-edit-info/product-edit-info.component';
+import { ProductEditTagsComponent } from './components/product-edit-tags/product-edit-tags.component';
 
 import { SharedModule } from '../shared/shared.module';
+
 import { ProductsResolverService } from './services/products-resolver.service';
+
 
 @NgModule({
     imports: [
@@ -15,14 +19,37 @@ import { ProductsResolverService } from './services/products-resolver.service';
         SharedModule,
         RouterModule.forChild([
             { path: 'products', component: ProductListComponent},
-            { path: 'products/:id', component: ProductDetailsComponent, resolve: {resolveProducts: ProductsResolverService}},
-            { path: 'products/:id/edit', component: ProductEditComponent, resolve: {resolveProducts: ProductsResolverService}}
+            { path: 'products/:id', 
+              component: ProductDetailsComponent, 
+              resolve: {resolveProducts: ProductsResolverService}
+            },
+            { path: 'products/:id/edit', 
+              component: ProductEditComponent, 
+              resolve: {resolveProducts: ProductsResolverService},
+              children: [
+                    {
+                        path: '', 
+                        redirectTo: 'info', 
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'info',
+                        component: ProductEditInfoComponent
+                    },
+                    {
+                        path: 'tags',
+                        component: ProductEditTagsComponent
+                    }
+                ]
+            }
         ])
     ],
     declarations: [
         ProductListComponent,
         ProductDetailsComponent,
-        ProductEditComponent
+        ProductEditComponent,
+        ProductEditInfoComponent,
+        ProductEditTagsComponent
     ]
 })
 export class ProductModule { }

@@ -1,55 +1,29 @@
-<div class="col-lg-5" *ngIf="product">
-    <div class="well bs-component">
-        <form class="form-horizontal">
-            <fieldset>
-                <legend>Edit Product</legend>
-                <div class="form-group">
-                    <label for="productName" class="col-lg-3 control-label">Product Name</label>
-                    <div class="col-lg-8">
-                        <input type="text" 
-                               class="form-control" 
-                               id="productName" 
-                               placeholder="Product Name"
-                               [(ngModel)]=product.productName 
-                               name="productName">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="productCode" class="col-lg-3 control-label">Code Product</label>
-                    <div class="col-lg-8">
-                        <input type="text" 
-                               class="form-control" 
-                               id="productCode" 
-                               placeholder="Last Name"
-                               [(ngModel)]="product.productCode" 
-                               name="productCode">
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="description" class="col-lg-3 control-label">Description</label>
-                    <div class="col-lg-8">
-                        <input type="text" 
-                               class="form-control" 
-                               id="description" 
-                               placeholder="Description"
-                               [(ngModel)]="product.description" 
-                               name="description">
-                    </div>
-                </div>
-
-                <!-- <div class="form-group">
-                    <div class="col-lg-8 col-lg-offset-3">
-                        <button type="button" 
-                                class="btn btn-primary" 
-                                (click)="saveChanges()">
-                            Save
-                        </button>
-                    </div>
-                </div> -->
-            </fieldset>
-        </form>
+<div class="card text-center">
+    <div class="card-header">
+        <h5>{{pageTitle}}</h5>
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['info']" href="#">Basic Information</a>    <!--  Relative Path "['info']"   sin barra inclinada -->
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['tags']" href="#">Search Tags</a>
+            </li>
+        </ul>
     </div>
+    <router-outlet></router-outlet>
+    <div class="row mb-2">
+        <div class="col-md-4">
+            <button class="btn btn-outline-secondary mr-3" 
+                    style="width:80px" 
+                    type="button"
+                    title="Cancel your edits" 
+                    [routerLink]="['/products']">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-danger" *ngIf="errorMessage">
+    {{errorMessage}}
 </div>
