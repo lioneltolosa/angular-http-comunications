@@ -18,30 +18,41 @@ import { ProductsResolverService } from './services/products-resolver.service';
         CommonModule,
         SharedModule,
         RouterModule.forChild([
-            { path: 'products', component: ProductListComponent},
-            { path: 'products/:id', 
-              component: ProductDetailsComponent, 
-              resolve: {resolveProducts: ProductsResolverService}
-            },
-            { path: 'products/:id/edit', 
-              component: ProductEditComponent, 
-              resolve: {resolveProducts: ProductsResolverService},
-              children: [
+            {
+                path: 'products', 
+                //component: ProductListComponent,
+                children: [
                     {
-                        path: '', 
-                        redirectTo: 'info', 
-                        pathMatch: 'full'
+                        path: '',
+                        component: ProductListComponent
                     },
-                    {
-                        path: 'info',
-                        component: ProductEditInfoComponent
+                    { 
+                        path: ':id', 
+                        component: ProductDetailsComponent, 
+                        resolve: {resolveProducts: ProductsResolverService}
                     },
-                    {
-                        path: 'tags',
-                        component: ProductEditTagsComponent
+                    { 
+                        path: ':id/edit',
+                        component: ProductEditComponent, 
+                        resolve: {resolveProducts: ProductsResolverService},
+                        children: [
+                            {
+                                path: '', 
+                                redirectTo: 'info', 
+                                pathMatch: 'full'
+                            },
+                            {
+                                path: 'info',
+                                component: ProductEditInfoComponent
+                            },
+                            {
+                                path: 'tags',
+                                component: ProductEditTagsComponent
+                            }
+                        ]
                     }
                 ]
-            }
+            },
         ])
     ],
     declarations: [
