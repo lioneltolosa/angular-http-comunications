@@ -28,6 +28,20 @@
         <span>
             <ul class="navbar-nav">
                 <li class="nav-item">
+                    <a class="nav-link"
+                       *ngIf="!isMessageDisplayed" 
+                       (click)="displayMessages()">
+                       Show Message
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       *ngIf="isMessageDisplayed" 
+                       (click)="hideMessage()">
+                       Hide Message
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/login']">Log in</a>
                 </li>
             </ul>
@@ -36,5 +50,12 @@
 </nav>
 
 <div class="container pt-3">
-    <router-outlet></router-outlet>
+    <div class="row">
+        <div class="col-md-10">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col-md-2">
+            <router-outlet name="popup"></router-outlet>
+        </div>
+    </div>
 </div>

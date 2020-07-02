@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
+import { MessageService } from './message/services/message.service';
 
 @Component({
     selector: 'app-root',
@@ -7,11 +8,16 @@ import { Router, Event, NavigationStart, NavigationEnd, NavigationError, Navigat
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+    
     title = 'angular-http';
-
     loading = true;
 
-    constructor(private router: Router) {
+    get isMessageDisplayed(): boolean {
+        return this.messageService.isDisplayed;
+    }
+
+    constructor(private router: Router,
+                private messageService: MessageService) {
         router.events.subscribe((routerEvent: Event) => {
             this.checkRouterEvent(routerEvent)
         })
@@ -28,4 +34,16 @@ export class AppComponent {
           this.loading = false;
         }
     }
+
+    displayMessages(): void {
+        this.router.navigate([{ outlets: { popup: ['messages'] }}]);
+        this.messageService.isDisplayed = true
+    }
+
+    hideMessage(): void {
+        this.router.navigate([{ outlets: { popup: null }}]);
+        this.messageService.isDisplayed = false
+    }
 }
+
+

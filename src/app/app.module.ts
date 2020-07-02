@@ -17,6 +17,7 @@ import { EditComponent } from './views/edit/edit.component';
 import { AddHeadersInterceptor } from './services/add-headers.interceptor';
 import { CacheInterceptor } from './services/cache.interceptor';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
+import { MessageModule } from './message/message.module';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
         InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
         ProductModule,
         UsersModule,
+        MessageModule,
         AppRoutingModule, // El AppRoutingModule va de ultimo, no se porque pero peta si va arriba. Si esta arriba me sale el PageNotFoundComponent
     ],
     providers: [
