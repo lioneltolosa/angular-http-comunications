@@ -7,7 +7,6 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ProductData } from './products/data';
 
 // Feature Modules
-import { ProductModule } from './products/product.module';
 import { UsersModule } from './users/users.module';
 
 import { AppComponent } from './app.component';
@@ -33,7 +32,6 @@ import { MessageModule } from './message/message.module';
         HttpClientModule,
         FormsModule,
         InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
-        ProductModule,
         UsersModule,
         MessageModule,
         AppRoutingModule, // El AppRoutingModule va de ultimo, no se porque pero peta si va arriba. Si esta arriba me sale el PageNotFoundComponent

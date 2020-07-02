@@ -18,10 +18,9 @@ import { ProductsResolverService } from './services/products-resolver.service';
         CommonModule,
         SharedModule,
         RouterModule.forChild([
-            {
+            /* {
                 path: 'products', 
-                //component: ProductListComponent,
-                children: [
+                children: [ */
                     {
                         path: '',
                         component: ProductListComponent
@@ -50,8 +49,8 @@ import { ProductsResolverService } from './services/products-resolver.service';
                                 component: ProductEditTagsComponent
                             }
                         ]
-                    }
-                ]
+                 /*    }
+                ] */
             },
         ])
     ],
