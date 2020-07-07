@@ -1,9 +1,7 @@
 export class Companie {
     id: number;
-    companieName: string;
-    companieId: number;
-    category: string;
-    description: string;
-    phone: number;
-    imageUrl: string;
+    name: string;
+    sliceCalories: number;
+    slicePrice: number;
+    wholePrice: number;
 }

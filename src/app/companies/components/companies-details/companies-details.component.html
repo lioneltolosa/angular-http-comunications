@@ -1,1 +1,20 @@
-<p>companies-details works!</p>
+<div class="row" *ngIf="companies">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-3">Name:</div>
+            <div class="col-md-6">{{companies.name}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">sliceCalories:</div>
+            <div class="col-md-6">{{companies.sliceCalories}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">slicePrice:</div>
+            <div class="col-md-6">{{companies.slicePrice}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">wholePrice:</div>
+            <div class="col-md-6">{{companies.wholePrice}}</div>
+        </div>
+    </div>
+</div>

@@ -4,28 +4,25 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">id</th>
                 <th scope="col">Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Avatar</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
+                <th scope="col">sliceCalories</th>
+                <th scope="col">slicePrice</th>
+                <th scope="col">wholePrice</th>
               </tr>
         </thead>
         <tbody>
             <tr *ngFor="let companie of allcompanies">
-                <td>{{companie.id}}</td>
-                <td>{{companie.name}}</td>
+                <td [routerLink]="['/companies', companie.id]">{{companie.name}}</td>
                 <td>{{companie.sliceCalories}}</td>
                 <td>{{companie.slicePrice}}</td>
-                <td> 
+                <td>{{companie.wholePrice}}</td>
+                <!-- <td> 
                     <img [src]="companie.imageUrl" class="image-url" alt="...">
-                </td>
-                <!-- <td>
+                </td> -->
+               <!--  <td>
                     <a [routerLink]="['/edit', user.id]">Edit</a>
-                </td>
-                <td>
+                </td> -->
+                <!-- <td>
                     <a (click)="deleteUser(user.id)">Delete</a>
                 </td> -->
             </tr>
