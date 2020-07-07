@@ -31,7 +31,7 @@ import { MessageModule } from './message/message.module';
         BrowserModule,
         HttpClientModule,
         FormsModule,
-        InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
+        //InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
         UsersModule,
         MessageModule,
         AppRoutingModule, // El AppRoutingModule va de ultimo, no se porque pero peta si va arriba. Si esta arriba me sale el PageNotFoundComponent

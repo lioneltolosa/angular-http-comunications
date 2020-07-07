@@ -15,6 +15,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./products/product.module').then(m => m.ProductModule)
     },
+    {
+        path: 'companies',
+        loadChildren: () =>
+          import('./companies/companies.module').then(m => m.CompaniesModule)
+    },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];
